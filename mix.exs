@@ -4,6 +4,7 @@ defmodule BeliefStructure.MixProject do
   def project do
     [
       app: :belief_structure,
+      dialyzer: [plt_add_deps: :app_tree],
       version: "0.1.0",
       elixir: "~> 1.12-rc",
       start_permanent: Mix.env() == :prod,
@@ -21,7 +22,8 @@ defmodule BeliefStructure.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, "~> 1.5.5", only: [:dev], runtime: false}
+      {:credo, "~> 1.5.5", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.1", only: [:dev], runtime: false}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
