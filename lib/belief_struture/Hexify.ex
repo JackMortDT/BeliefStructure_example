@@ -2,7 +2,7 @@ defmodule BeliefStructure.Hexify do
   @moduledoc false
 
   @doc """
-  Adds the "_ex" suffix to the package name if necessary.
+  Adds the "_ex" suffix to the package name.
 
   ## Examples
 
