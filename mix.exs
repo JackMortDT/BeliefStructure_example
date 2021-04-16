@@ -6,8 +6,9 @@ defmodule BeliefStructure.MixProject do
       app: :belief_structure,
       dialyzer: [plt_add_deps: :app_tree],
       version: "0.1.0",
-      elixir: "~> 1.12-rc",
+      elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -15,7 +16,7 @@ defmodule BeliefStructure.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :jason]
     ]
   end
 
@@ -23,9 +24,20 @@ defmodule BeliefStructure.MixProject do
   defp deps do
     [
       {:credo, "~> 1.5.5", only: [:dev], runtime: false},
-      {:dialyxir, "~> 1.1", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.1", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.21.3", only: :dev, runtime: false},
+      {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test]},
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
+  end
+
+  def aliases do
+    [code_review: [
+      "dialyzer",
+      "credo --strict",
+      "docs",
+      "inch"
+    ]]
   end
 end
