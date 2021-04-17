@@ -4,6 +4,13 @@ defmodule BeliefStructure.MixProject do
   def project do
     [
       app: :belief_structure,
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
+      test_coverage: [tool: ExCoveralls],
       dialyzer: [plt_add_deps: :app_tree],
       version: "0.1.0",
       elixir: "~> 1.9",
@@ -25,6 +32,7 @@ defmodule BeliefStructure.MixProject do
     [
       {:credo, "~> 1.5.5", only: [:dev], runtime: false},
       {:dialyxir, "~> 1.1", only: [:dev], runtime: false},
+      {:excoveralls, "~> 0.10", only: [:test, :dev], runtime: false},
       {:ex_doc, "~> 0.21.3", only: :dev, runtime: false},
       {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test]}
     ]
@@ -32,10 +40,12 @@ defmodule BeliefStructure.MixProject do
 
   def aliases do
     [code_review: [
+      "test",
       "dialyzer",
       "credo --strict",
+      "inch",
+      "coveralls",
       "docs",
-      "inch"
     ]]
   end
 end
